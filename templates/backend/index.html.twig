@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Backend index{% endblock %}
+
+{% block body %}
+    <h1>Backend index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Link</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for backend in backends %}
+            <tr>
+                <td>{{ backend.id }}</td>
+                <td>{{ backend.name }}</td>
+                <td>{{ backend.description }}</td>
+                <td>{{ backend.image }}</td>
+                <td>{{ backend.link }}</td>
+                <td>
+                    <a href="{{ path('app_backend_show', {'id': backend.id}) }}">show</a>
+                    <a href="{{ path('app_backend_edit', {'id': backend.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_backend_new') }}">Create new</a>
+{% endblock %}
